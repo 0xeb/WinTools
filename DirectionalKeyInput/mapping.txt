@@ -1,0 +1,17 @@
+; DKI
+; by Elias Bachaalany <lallousz-x86@yahoo.com>
+;
+; 4 keys mapping
+KEYS:ASDF
+
+; Groupping of keys mapped to direction keys
+U:ABCD
+UR:EFGH
+R:IJKL
+DR:MNOP
+D:QRST
+DL:1234
+L:UVWX
+UL:YZ56
+UD:7890
+LR:5678

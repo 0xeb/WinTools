@@ -1,0 +1,38 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+ <head>
+  <title> New Document </title>
+  <meta name="Generator" content="EditPlus">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+ </head>
+
+ <body>
+  <script>
+// (c) Elias Bachaalany
+  function display(B, L, brk)
+  {
+    var i, row=1, x;
+    document.write(row+':');
+    row++;
+    for (i=0;i<L;i++)
+    {
+      x = String.fromCharCode(B+i);
+      document.write(x);
+      if ((i+1)%brk == 0)
+      {
+        if (i+1 < L)
+          document.write('<br/>'+row+':');
+        row++;
+      }
+    }
+    document.write('<hr/>');
+  }
+
+  display(65, 26, 3);
+  display(65, 26, 4);
+  display(48, 10, 2);
+  </script>
+ </body>
+</html>
