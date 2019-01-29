@@ -1,0 +1,10 @@
+Binaries/
+.vs/
+Release/
+Debug/
+*.ipch
+*.sdf
+*.opensdf
+*.opendb
+*.aps
+*.vcxproj.user
