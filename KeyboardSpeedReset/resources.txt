@@ -1,0 +1,5 @@
+http://msdn.microsoft.com/en-us/library/windows/desktop/aa373247(v=vs.85).aspx
+http://www.codeproject.com/Articles/39174/Automated-Power-Management-Operations-of-Windows-S
+http://codeidol.com/community/dotnet/dealing-with-operating-system-shutdown-power-manag/9173/
+
+http://msdn.microsoft.com/en-us/library/windows/desktop/ms724947(v=vs.85).aspx
