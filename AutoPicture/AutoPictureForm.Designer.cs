@@ -28,7 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.fileSystemWatcher1 = new System.IO.FileSystemWatcher();
+            this.tmrRetry = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -38,6 +40,11 @@
             this.fileSystemWatcher1.SynchronizingObject = this;
             this.fileSystemWatcher1.Changed += new System.IO.FileSystemEventHandler(this.fileSystemWatcher1_Changed);
             this.fileSystemWatcher1.Created += new System.IO.FileSystemEventHandler(this.fileSystemWatcher1_Created);
+            // 
+            // tmrRetry
+            // 
+            this.tmrRetry.Interval = 500;
+            this.tmrRetry.Tick += new System.EventHandler(this.tmrRetry_Tick);
             // 
             // AutoPictureForm
             // 
@@ -55,6 +62,7 @@
 
         #endregion
         private System.IO.FileSystemWatcher fileSystemWatcher1;
+        private System.Windows.Forms.Timer tmrRetry;
     }
 }
 
