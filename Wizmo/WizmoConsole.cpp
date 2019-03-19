@@ -30,7 +30,13 @@ Written by Elias Bachaalany
  * -----------------------------------------------------------------------------
  */
 
-#include "stdafx.h"
+#define WIN32_LEAN_AND_MEAN		// Exclude rarely-used stuff from Windows headers
+#define _WIN32_WINNT 0x0500
+
+#include <stdio.h>
+#include <windows.h>
+#include <mmsystem.h>
+#include <tchar.h>
 
 #define __MYDEBUG
 
@@ -106,7 +112,7 @@ void CWizmo::OpenCloseDrive(char cDrive, bool bOpenDrive)
 		| MCI_OPEN_TYPE_ID
 		| MCI_OPEN_SHAREABLE;
 
-	if (!mciSendCommand(0, MCI_OPEN, flags, (unsigned long)&op))
+	if (!mciSendCommand(0, MCI_OPEN, flags, (DWORD_PTR)&op))
 	{
 		st.dwItem = MCI_STATUS_READY;
 		if (bOpenDrive)
@@ -149,7 +155,7 @@ void CWizmo::SetWaveVolume(UINT nVolume)
 	if ((woc.dwSupport & WAVECAPS_VOLUME) == 0)
 		return;
 	nVolume &= 0xFFFF;
-	waveOutSetVolume((HWAVEOUT)WAVE_MAPPER, nVolume | (nVolume << 16));
+	waveOutSetVolume((HWAVEOUT)UINT_PTR(WAVE_MAPPER), nVolume | (nVolume << 16));
 }
 
 //----------------------------------------------------------------------------------
@@ -186,7 +192,7 @@ void CWizmo::SpeakersAdjust(int nValue, int aControlType)
 	do
 	{
 		// get number of lines
-		if (mixerGetDevCaps((UINT)hmixer, &mxc, sizeof(mxc)) != MMSYSERR_NOERROR)
+		if (mixerGetDevCaps((UINT_PTR)hmixer, &mxc, sizeof(mxc)) != MMSYSERR_NOERROR)
 			break;
 
 		// search for speaker
@@ -440,27 +446,27 @@ int main(int argc, char *argv[])
 	const char *cmd = argv[1];
 	const char *param = argv[2];
 
-	if (stricmp(cmd, "-monoff") == 0)
+	if (_stricmp(cmd, "-monoff") == 0)
 		w.MonitorOff();
-	else if (stricmp(cmd, "-abortshutdown") == 0)
+	else if (_stricmp(cmd, "-abortshutdown") == 0)
 		w.AbortShutdown();
-	else if (param != NULL && stricmp(cmd, "-play") == 0)
+	else if (param != NULL && _stricmp(cmd, "-play") == 0)
 		w.PlayFile(param);
-	else if (stricmp(cmd, "-lock") == 0)
+	else if (_stricmp(cmd, "-lock") == 0)
 		w.Lock();
-	else if (stricmp(cmd, "-hibernate") == 0)
+	else if (_stricmp(cmd, "-hibernate") == 0)
 		w.Hibernate();
-	else if (stricmp(cmd, "-logoff") == 0)
+	else if (_stricmp(cmd, "-logoff") == 0)
 		w.LogOff();
-	else if (stricmp(cmd, "-mute") == 0)
+	else if (_stricmp(cmd, "-mute") == 0)
 		w.MuteMasterVolume(param == NULL ? true : (param[0] - '0' == 1));
-	else if (stricmp(cmd, "-reboot") == 0)
+	else if (_stricmp(cmd, "-reboot") == 0)
 		w.Reboot();
-	else if (stricmp(cmd, "-blank") == 0)
+	else if (_stricmp(cmd, "-blank") == 0)
 		w.Blank();
-	else if (param != NULL && stricmp(cmd, "-eject") == 0)
+	else if (param != NULL && _stricmp(cmd, "-eject") == 0)
 		w.OpenCloseDrive(param[0], true);
-	else if (param != NULL && stricmp(cmd, "-close") == 0)
+	else if (param != NULL && _stricmp(cmd, "-close") == 0)
 		w.OpenCloseDrive(param[0], false);
 	else
 	{
