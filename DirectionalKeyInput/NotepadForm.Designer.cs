@@ -1,6 +1,6 @@
 namespace DirInput
 {
-  partial class Form2
+  partial class NotepadForm
   {
     /// <summary>
     /// Required designer variable.

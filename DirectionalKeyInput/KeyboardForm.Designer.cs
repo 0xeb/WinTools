@@ -1,6 +1,6 @@
 namespace DirInput
 {
-  partial class Form1
+  partial class KeyboardForm
   {
     /// <summary>
     /// Required designer variable.

@@ -40,7 +40,7 @@ Directional Key input by Elias Bachaalany <lallousz-x86@yahoo.com>
 
 namespace DirInput
 {
-    public partial class Form1 : Form
+    public partial class KeyboardForm : Form
     {
         public string[] args;
         enum Directions : int
@@ -58,7 +58,7 @@ namespace DirInput
         string InputKeys;
         Control EditControl = null;
 
-        public Form1()
+        public KeyboardForm()
         {
             InitializeComponent();
         }
@@ -77,7 +77,7 @@ namespace DirInput
                 this.Close();
                 return;
             }
-            Form2 f = new Form2();
+            NotepadForm f = new NotepadForm();
             EditControl = f.GetEditControl();
             f.Show();
         }

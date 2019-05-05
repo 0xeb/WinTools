@@ -8,9 +8,9 @@ using System.Windows.Forms;
 
 namespace DirInput
 {
-  public partial class Form2 : Form
+  public partial class NotepadForm : Form
   {
-    public Form2()
+    public NotepadForm()
     {
       InitializeComponent();
     }

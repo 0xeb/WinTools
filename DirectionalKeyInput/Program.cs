@@ -14,7 +14,7 @@ namespace DirInput
     {
       Application.EnableVisualStyles();
       Application.SetCompatibleTextRenderingDefault(false);
-      Form1 f = new Form1();
+      KeyboardForm f = new KeyboardForm();
       f.args = args;
       Application.Run(f);
     }
