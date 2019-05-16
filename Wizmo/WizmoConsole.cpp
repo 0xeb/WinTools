@@ -32,11 +32,14 @@ Written by Elias Bachaalany
 
 #define WIN32_LEAN_AND_MEAN		// Exclude rarely-used stuff from Windows headers
 #define _WIN32_WINNT 0x0500
+#define _CRT_SECURE_NO_WARNINGS
 
 #include <stdio.h>
 #include <windows.h>
 #include <mmsystem.h>
 #include <tchar.h>
+
+#pragma comment(lib, "winmm")
 
 #define __MYDEBUG
 
