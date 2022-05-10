@@ -107,17 +107,20 @@ int main(int argc, char *argv[])
                 printf("QWS failed!\n");
                 break;
             }
+
             // Inspect changes
             for (DWORD i = 0; i < pv_count; ++i)
             {
                 auto pvi = pv + i;
                 auto valid = DWORD(pvi->VirtualAttributes.Valid);
+                auto rsvd_ = DWORD(pvi->VirtualAttributes.Reserved & 0x40) != 0;
                 DWORD shared = valid ? DWORD(pvi->VirtualAttributes.Shared) : DWORD(pvi->VirtualAttributes.Invalid.Shared);
-                printf("Page #%2u: %p; Valid: %u; Shared: %u\n",
+                printf("Page #%2u: %p; Valid: %u; Shared: %u Rsvd: %u\n",
                     i + 1,
                     pvi->VirtualAddress,
                     valid,
-                    shared);
+                    shared,
+                    rsvd_);
             }
         }
         // Patch
