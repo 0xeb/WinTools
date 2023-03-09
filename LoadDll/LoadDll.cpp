@@ -2,6 +2,24 @@
 #include <conio.h>
 #include <stdio.h>
 
+LPSTR GetErrorAsString(DWORD error_code)
+{
+    LPSTR message_buffer = nullptr;
+    size_t size = FormatMessageA(
+        FORMAT_MESSAGE_ALLOCATE_BUFFER |
+        FORMAT_MESSAGE_FROM_SYSTEM |
+        FORMAT_MESSAGE_IGNORE_INSERTS,
+        NULL,
+        error_code,
+        MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),
+        reinterpret_cast<LPSTR>(&message_buffer),
+        0,
+        NULL
+    );
+
+    return message_buffer;
+}
+
 //-------------------------------------------------------------------------
 int main(int argc, char *argv[])
 {
@@ -17,7 +35,7 @@ int main(int argc, char *argv[])
     char **dll_names = new char *[nMaxDlls];
 
     // Loading stage
-    for (size_t iArg=1, iMod=0; iArg < argc; ++iArg)
+    for (int iArg=1, iMod=0; iArg < argc; ++iArg)
     {
         const char *dll_name = argv[iArg];
 
@@ -26,7 +44,15 @@ int main(int argc, char *argv[])
             HMODULE hMod = LoadLibraryA(dll_name);
             if (hMod == nullptr)
             {
-                printf("#%zu failed to load '%s'...skipped", iArg, dll_name);
+                auto gle = GetLastError();
+                auto message_buffer = GetErrorAsString(gle);
+                printf("#%zu failed to load '%s'...skipped with error %d: %s", 
+                    iArg, 
+                    dll_name, 
+                    gle,
+                    message_buffer);
+                LocalFree(message_buffer);
+
                 continue;
             }
 
