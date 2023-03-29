@@ -7,7 +7,7 @@ setlocal
 if not exist build (
     mkdir build
     pushd build
-    cmake -G "Visual Studio 16 2019" ..
+    cmake -A Win32 -G "Visual Studio 16 2019" ..
     popd
 )
 
