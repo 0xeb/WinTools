@@ -4,7 +4,7 @@
 #include "Wizmo.h"
 
 //----------------------------------------------------------------------------------
-int main(int argc, char *argv[])
+int do_main(int argc, char *argv[])
 {
     if (argc < 2)
     {
@@ -45,4 +45,18 @@ int main(int argc, char *argv[])
         return -2;
     }
     return 0;
+}
+
+int main(int argc, char *argv[])
+{
+    printf("Starting...press any key...");    
+    _getch();
+    printf("\r                                  \r");    
+    int r = do_main(argc, argv);
+
+    printf("Finished...press any key...");    
+    _getch();
+    printf("\n");
+
+    return r;
 }
