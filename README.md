@@ -6,4 +6,5 @@ A collection of free miscellaneous Windows tools
 - WorkingSet: A project to test the QueryWorkingSetEx()
 - WERFault: A tool to setup the default WER config
 - Wizmo: A C++ command line utility for Windows (eject CD drive, mute/unmute/play sound/shutdown/reboot/etc.)
+- WEPExplorer: Windows Events Providers explorer
 - More...
