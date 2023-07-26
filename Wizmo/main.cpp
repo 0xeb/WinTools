@@ -1,11 +1,22 @@
 #include <stdio.h>
 #include <tchar.h>
 #include <conio.h>
+#include <cstdlib>
 #include "Wizmo.h"
 
 //----------------------------------------------------------------------------------
 int main(int argc, char *argv[])
 {
+    // Should pause at exit?
+    for (int iarg = 1; iarg < argc; ++iarg)
+    {
+        if (_stricmp(argv[iarg], "--pause") == 0)
+        {
+            atexit([] { printf("press any key to exit...\n"); _getch(); });
+            break;
+        }
+    }
+
     if (argc < 2)
     {
         CWizmo::ShowHelp();
