@@ -46,7 +46,7 @@ int main(int argc, char *argv[])
             {
                 auto gle = GetLastError();
                 auto message_buffer = GetErrorAsString(gle);
-                printf("#%zu failed to load '%s'...skipped with error %d: %s", 
+                printf("#%d failed to load '%s'...skipped with error %d: %s", 
                     iArg, 
                     dll_name, 
                     gle,
@@ -56,7 +56,7 @@ int main(int argc, char *argv[])
                 continue;
             }
 
-            printf("#%zu %p: '%s' loaded...\n", iArg, hMod, dll_name);
+            printf("#%d %p: '%s' loaded...\n", iArg, hMod, dll_name);
 
             hMods[iMod] = hMod;
             dll_names[iMod] = _strdup(dll_name);
@@ -64,7 +64,7 @@ int main(int argc, char *argv[])
         }
         __except (EXCEPTION_EXECUTE_HANDLER)
         {
-            printf("#%zu exception occurred while loading '%s'...skipped", iArg, dll_name);
+            printf("#%d exception occurred while loading '%s'...skipped", iArg, dll_name);
             (void)_getch();
             continue;
         }
