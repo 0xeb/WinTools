@@ -38,7 +38,13 @@ int main(int argc, char *argv[])
     for (int iArg=1, iMod=0; iArg < argc; ++iArg)
     {
         const char *dll_name = argv[iArg];
-
+        if (_stricmp(dll_name, "--pause") == 0)
+        {
+            printf("Pausing...press any key to continue");
+            _getch();
+            printf("\n");
+            continue;
+        }
         __try
         {
             HMODULE hMod = LoadLibraryA(dll_name);
