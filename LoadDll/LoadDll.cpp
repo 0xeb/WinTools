@@ -25,7 +25,7 @@ int main(int argc, char *argv[])
 {
     if (argc < 2)
     {
-        printf("Please pass a library or libraries to load!\n");
+        printf("Please pass a library or libraries to load! (build" __DATE__ " " __TIME__ "\n");
         return -1;
     }
 
@@ -42,6 +42,14 @@ int main(int argc, char *argv[])
         {
             printf("Pausing...press any key to continue");
             _getch();
+            printf("\n");
+            continue;
+        }
+        else if (_stricmp(dll_name, "--break") == 0)
+        {
+            printf("breakpoint...attach a debugger then press any key to continue");
+            _getch();
+            ::DebugBreak();
             printf("\n");
             continue;
         }
