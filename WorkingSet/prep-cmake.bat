@@ -4,27 +4,10 @@
 
 setlocal
 
-if not exist build (
-    mkdir build
-    pushd build
-    cmake -G "Visual Studio 16 2019" ..
-    popd
-)
+if not exist build cmake -B build
 
-if not exist build64 (
-    mkdir build64
-    pushd build64
-    cmake -A x64 -G "Visual Studio 16 2019" ..
-    popd
-)
 
-if "%1"=="build" (
-    pushd build
-    cmake --build . --config Release
-    pushd ..\build64
-    cmake --build . --config Release
-    popd
-)
+if "%1"=="build" cmake --build build --config Release
 
 echo.
 echo All done!

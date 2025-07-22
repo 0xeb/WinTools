@@ -3,6 +3,6 @@ project(WorkingSet)
 
 set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} /MT")
 
-add_executable(VerifyDll VerifyDll.cpp)
+add_executable(workingset main.cpp)
 
 add_library(DummyDll SHARED dummydll.cpp)
